@@ -23,30 +23,31 @@ public class SpotifyRepository {
     public SpotifyRepository(){
         //To avoid hitting apis multiple times, initialize all the hashmaps here with some dummy data
         artistAlbumMap = new HashMap<>();
-        artistAlbumMap.put(new Artist("Fake"),new ArrayList<>());
+        //artistAlbumMap.put(new Artist("Fake"),new ArrayList<>());
         albumSongMap = new HashMap<>();
-        albumSongMap.put(new Album("Fake"),new ArrayList<>());
+        //albumSongMap.put(new Album("Fake"),new ArrayList<>());
         playlistSongMap = new HashMap<>();
-        playlistSongMap.put(new Playlist("Fake"),new ArrayList<>());
+        //playlistSongMap.put(new Playlist("Fake"),new ArrayList<>());
         playlistListenerMap = new HashMap<>();
-        playlistListenerMap.put(new Playlist("Fake"),new ArrayList<>());
+        //playlistListenerMap.put(new Playlist("Fake"),new ArrayList<>());
         creatorPlaylistMap = new HashMap<>();
-        creatorPlaylistMap.put(new User("Fake","1234567890"),new Playlist("Fake"));
+        //creatorPlaylistMap.put(new User("Fake","1234567890"),new Playlist("Fake"));
         userPlaylistMap = new HashMap<>();
-        userPlaylistMap.put(new User("Fake","1234567890"),new ArrayList<>());
+        //userPlaylistMap.put(new User("Fake","1234567890"),new ArrayList<>());
         songLikeMap = new HashMap<>();
-        songLikeMap.put(new Song("Fake",5),new ArrayList<>());
+        //songLikeMap.put(new Song("Fake",5),new ArrayList<>());
 
         users = new ArrayList<>();
-        users.add(new User("Fake","1234567890"));
+        //users.add(new User("Fake","1234567890"));
         songs = new ArrayList<>();
-        songs.add(new Song("Fake",5));
+        //songs.add(new Song("Fake",5));
         playlists = new ArrayList<>();
-        playlists.add(new Playlist("Fake"));
+        //playlists.add(new Playlist("Fake"));
         albums = new ArrayList<>();
-        albums.add(new Album("Fake"));
+        //albums.add(new Album("Fake"));
         artists = new ArrayList<>();
-        artists.add(new Artist("Fake"));
+        //artists.add(new Artist("Fake"));
+
     }
 
     public User createUser(String name, String mobile) {
@@ -402,7 +403,13 @@ public class SpotifyRepository {
             }
             s.setLikes(s.getLikes()+1);
             songLikeMap.get(s).add(u);
+        }else{
+            s.setLikes(s.getLikes()+1);
+            List<User> temp = new ArrayList<>();
+            temp.add(u);
+            songLikeMap.put(s,temp);
         }
+
         Album al = null;
         Artist ar = null;
 

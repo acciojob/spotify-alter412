@@ -71,7 +71,7 @@ public class SpotifyController {
     }
 
     @PutMapping("/like-song")
-    public Song likeSong(String mobile, String songTitle) throws Exception{
+    public Song likeSong(@RequestParam String mobile,@RequestParam String songTitle) throws Exception{
         //The user likes the given song. The corresponding artist of the song gets auto-liked
         //A song can be liked by a user only once. If a user tried to like a song multiple times, do nothing
         //However, an artist can indirectly have multiple likes from a user, if the user has liked multiple songs of that artist.
