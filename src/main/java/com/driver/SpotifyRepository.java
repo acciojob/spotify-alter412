@@ -350,6 +350,12 @@ public class SpotifyRepository {
         }
 
         isP = false;
+        if(!userPlaylistMap.containsKey(u)){
+            List<Playlist> temp = new ArrayList<>();
+            temp.add(p);
+            userPlaylistMap.put(u,temp);
+            return p;
+        }
         for(Playlist x: userPlaylistMap.get(u)){
             if(x==p){
                 isP=true;
@@ -394,11 +400,9 @@ public class SpotifyRepository {
                     return s;
                 }
             }
+            s.setLikes(s.getLikes()+1);
+            songLikeMap.get(s).add(u);
         }
-
-        s.setLikes(s.getLikes()+1);
-        songLikeMap.get(s).add(u);
-
         Album al = null;
         Artist ar = null;
 
@@ -412,6 +416,9 @@ public class SpotifyRepository {
             if(al!=null){
                 break;
             }
+        }
+        if(al==null){
+            return s;
         }
         for(Artist x: artistAlbumMap.keySet()){
             for(Album temp : artistAlbumMap.get(x)){
@@ -430,6 +437,7 @@ public class SpotifyRepository {
         }
 
         return s;
+
     }
 
     public String mostPopularArtist() {
